@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from "@mui/material";
+import React from "react";
+import { Provider } from "react-redux";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import { store } from "./feature/store";
+import Dashboard from "./pages/dashboard";
+import Login from "./pages/login";
+import ROUTES from "./utils/routes";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ThemeProvider theme={{}}>
+        <Router />
+      </ThemeProvider>
+    </Provider>
   );
 }
 
 export default App;
+
+function Router(): React.ReactElement {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path={ROUTES.home} element={<Dashboard />} />
+        <Route path={ROUTES.login} element={<Login />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
