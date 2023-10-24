@@ -7,11 +7,14 @@ import { store } from "./feature/store";
 import Dashboard from "./pages/dashboard";
 import Login from "./pages/login";
 import ROUTES from "./utils/routes";
+import theme from "./utils/theme";
+import T20 from "./pages/t20";
+import ODI from "./pages/ODI";
 
 function App() {
   return (
     <Provider store={store}>
-      <ThemeProvider theme={{}}>
+      <ThemeProvider theme={theme}>
         <Router />
       </ThemeProvider>
     </Provider>
@@ -25,7 +28,8 @@ function Router(): React.ReactElement {
     <BrowserRouter>
       <Routes>
         <Route path={ROUTES.home} element={<Dashboard />} />
-        <Route path={ROUTES.login} element={<Login />} />
+        <Route path={ROUTES.t20} element={<T20 />} />
+        <Route path={ROUTES.odi} element={<ODI />} />
       </Routes>
     </BrowserRouter>
   );

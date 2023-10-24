@@ -1,10 +1,8 @@
-import { Box, Button, Typography } from "@mui/material";
-import React from "react";
-import { useAppDispatch, useAppSelector } from "../../utils/reduxHooks";
-import { increment } from "../../feature/counter/counterSlice";
+import { Box } from "@mui/material";
 import MyAppBar from "../../component/appBar";
-import CricketFormats from "../../component/cricketFormats";
 import CricketAccordion from "../../component/cricketAccordian";
+import Header from "../../component/header";
+
 const questionDetails = [
   {
     title:
@@ -47,32 +45,40 @@ const questionDetails = [
       "This section calculates the combined total of half-centuries (50s) scored by the top 5 batsmen in the dataset.",
   },
 ];
-
-function Dashboard(): React.ReactElement {
+function T20() {
   return (
     <div>
-      <MyAppBar title="Cricket Board" />
-      <Box
-        justifyContent={"center"}
-        alignItems={"center"}
-        display={"flex"}
-        marginTop={"1rem"}
-      >
-        <Typography variant="h5" fontWeight={"700"}>
-          Choose Format
-        </Typography>
+      <MyAppBar title="T20 Cricket" />
+      <Header title="Top Batsman" />
+      <Box component={"div"} paddingBottom={5}>
+        {questionDetails.map((item, index) => {
+          return (
+            <Box sx={{ margin: "0.5rem 5rem 0 5rem" }}>
+              <CricketAccordion
+                title={item.title}
+                description={item.description}
+              />
+            </Box>
+          );
+        })}
       </Box>
-      <CricketFormats />
-      <Box
-        justifyContent={"center"}
-        alignItems={"center"}
-        display={"flex"}
-        marginBottom={"1rem"}
-      >
-        <Typography variant="h5" fontWeight={"700"}>
-          Performance Analysis
-        </Typography>
+      {/* Bowler */}
+      <Header title="Top Bowler" />
+      <Box component={"div"} paddingBottom={5}>
+        {questionDetails.map((item, index) => {
+          return (
+            <Box sx={{ margin: "0.5rem 5rem 0 5rem" }}>
+              <CricketAccordion
+                title={item.title}
+                description={item.description}
+              />
+            </Box>
+          );
+        })}
       </Box>
+
+      {/* Fielder */}
+      <Header title="Top Fielder" />
       <Box component={"div"} paddingBottom={5}>
         {questionDetails.map((item, index) => {
           return (
@@ -89,4 +95,4 @@ function Dashboard(): React.ReactElement {
   );
 }
 
-export default Dashboard;
+export default T20;
