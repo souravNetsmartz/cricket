@@ -10,8 +10,13 @@ function MyAppBar(props: Props) {
   const navigate = useNavigate();
   return (
     <AppBar position="static" sx={{ boxShadow: "none" }}>
-      <Toolbar onClick={() => navigate("/")}>
-        <Typography variant="h6" fontWeight={"900"}>
+      <Toolbar>
+        <Typography
+          variant="h6"
+          fontWeight={"900"}
+          onClick={() => navigate("/")}
+          sx={{ cursor: "pointer" }}
+        >
           {title}
         </Typography>
       </Toolbar>

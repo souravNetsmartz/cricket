@@ -2,6 +2,13 @@ import { Box } from "@mui/material";
 import MyAppBar from "../../component/appBar";
 import CricketAccordion from "../../component/cricketAccordian";
 import Header from "../../component/header";
+import { useODITopCarrierRunsQuery } from "../../feature/api/ODITopCarrierRuns";
+import CricketBatsmanAccordion from "../../component/cricketBatsmanAccordian";
+import { useODIBatsmanQuery } from "../../feature/api/ODIBatsman";
+import { useODIBowlerQuery } from "../../feature/api/ODIBowler";
+import CricketBowlerAccordion from "../../component/cricketBowlerAccordian";
+import { useODIFielderQuery } from "../../feature/api/ODIFielder";
+import CricketFielderAccordion from "../../component/cricketFielderAccordian";
 
 const questionDetails = [
   {
@@ -46,17 +53,25 @@ const questionDetails = [
   },
 ];
 function ODI() {
+  const ODIBatsmanData = useODIBatsmanQuery();
+  const ODIBowlerData = useODIBowlerQuery();
+  const ODIFielderData = useODIFielderQuery();
+
+  const ODIBatsman = ODIBatsmanData?.data?.data;
+  const ODIBowler = ODIBowlerData?.data?.data;
+  const ODIFielder = ODIFielderData?.data?.data;
+
   return (
     <div>
       <MyAppBar title="ODI Cricket" />
       <Header title="Top Batsman" />
-      <Box component={"div"} paddingBottom={5}>
-        {questionDetails.map((item, index) => {
+      <Box component={"div"}>
+        {ODIBatsman?.map((item: any, index: any) => {
           return (
             <Box sx={{ margin: "0.5rem 5rem 0 5rem" }}>
-              <CricketAccordion
+              <CricketBatsmanAccordion
                 title={item.title}
-                description={item.description}
+                description={item.data}
               />
             </Box>
           );
@@ -64,13 +79,13 @@ function ODI() {
       </Box>
       {/* Bowler */}
       <Header title="Top Bowler" />
-      <Box component={"div"} paddingBottom={5}>
-        {questionDetails.map((item, index) => {
+      <Box component={"div"}>
+        {ODIBowler?.map((item: any, index: any) => {
           return (
             <Box sx={{ margin: "0.5rem 5rem 0 5rem" }}>
-              <CricketAccordion
+              <CricketBowlerAccordion
                 title={item.title}
-                description={item.description}
+                description={item.data}
               />
             </Box>
           );
@@ -80,12 +95,12 @@ function ODI() {
       {/* Fielder */}
       <Header title="Top Fielder" />
       <Box component={"div"} paddingBottom={5}>
-        {questionDetails.map((item, index) => {
+        {ODIFielder?.map((item: any, index: any) => {
           return (
             <Box sx={{ margin: "0.5rem 5rem 0 5rem" }}>
-              <CricketAccordion
+              <CricketFielderAccordion
                 title={item.title}
-                description={item.description}
+                description={item.data}
               />
             </Box>
           );
