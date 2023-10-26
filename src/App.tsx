@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { store } from "./feature/store";
 import Dashboard from "./pages/dashboard";
-import Login from "./pages/login";
+
 import ROUTES from "./utils/routes";
 import theme from "./utils/theme";
 import T20 from "./pages/t20";
